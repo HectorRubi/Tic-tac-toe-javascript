@@ -2,6 +2,7 @@
   width: 150px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  position: relative;
 }
 
 .box {
@@ -12,4 +13,16 @@
 
 .options {
   margin-top: 10px;
+}
+
+.winnerSlide {
+  background-color: transparent;
+  position: absolute;
+  width: 156px;
+  height: 100%;
+  display: none;
+}
+
+.winnerSlide.active {
+  display: block !important;
 }

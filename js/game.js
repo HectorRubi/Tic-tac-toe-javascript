@@ -44,7 +44,10 @@ class Game {
     });
   }
 
-  stop() {}
+  stop() {
+    const winnerSlide = document.getElementById('winnerSlide');
+    winnerSlide.classList.add('active');
+  }
 
   printPlayer() {
     const turnText = document.getElementById("turnText");
