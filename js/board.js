@@ -2,7 +2,7 @@ class Board {
   constructor(boxListRef) {
     this.boxList = [];
     this.currentContent = 'O';
-    this.boxListRef = boxListRef;
+    this.boxListRef = Array.prototype.slice.call(document.getElementsByClassName('box'));
     this.fillBoxList();
   }
 
@@ -23,5 +23,13 @@ class Board {
     for (let i = 0; i < 9; i++) {
       this.boxList.push(new Box(i + 1, '', this.boxListRef[i]));
     }
+  }
+
+  getBoxListContent() {
+    const boxListContent = [];
+    this.boxList.forEach(box => {
+      boxListContent.push(box.content);
+    });
+    return boxListContent;
   }
 }

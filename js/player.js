@@ -2,6 +2,7 @@ class Player {
   constructor(turn, letter) {
     this.turn = turn;
     this.letter = letter;
+    this.isWinner = false;
   }
 
   setTurn(turn) {
