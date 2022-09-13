@@ -2,7 +2,7 @@ class Board {
   constructor(boxListRef) {
     this.boxList = [];
     this.currentContent = 'O';
-    this.boxListRef = Array.prototype.slice.call(document.getElementsByClassName('box'));
+    this.boxListRef = Array.prototype.slice.call(document.getElementsByClassName('board__box'));
     this.fillBoxList();
   }
 

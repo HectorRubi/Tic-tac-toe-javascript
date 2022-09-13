@@ -1,21 +1,102 @@
+:root {
+  --primary-color: #3e7d91;
+  --secondary-color: #2C6171;
+  --tertiary-color: #F6DD7C;
+  --text-color: #9FA0A3;
+  --primary-font: 'Roboto', sans-serif;
+  --board-box-border: 3px solid var(--secondary-color);
+  --reset-transition: color 0.2s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: var(--primary-font);
+}
+
+.header {
+  text-align: center;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header__reset--container {
+  position: absolute;
+  left: 0;
+  padding: 0 20px;
+}
+
+.header__reset--button {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--reset-transition);
+  -webkit-transition: var(--reset-transition);
+  -moz-transition: var(--reset-transition);
+  -ms-transition: var(--reset-transition);
+  -o-transition: var(--reset-transition);
+}
+
+.header__reset--button:hover {
+  color: var(--secondary-color);
+}
+
+.header__title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .board {
+  margin: 0 auto;
   width: 150px;
+}
+
+.board__wrapper {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   position: relative;
 }
 
-.box {
+.board__box {
   width: 50px;
   height: 50px;
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: var(--tertiary-color);
 }
 
-.options {
-  margin-top: 10px;
+.board__box[data-index='1'],
+.board__box[data-index='2'],
+.board__box[data-index='4'],
+.board__box[data-index='5'] {
+  border-right: var(--board-box-border);
+  border-bottom: var(--board-box-border);
 }
 
-.winnerSlide {
+.board__box[data-index='3'],
+.board__box[data-index='6'] {
+  border-bottom: var(--board-box-border);
+}
+
+.board__box[data-index='7'],
+.board__box[data-index='8'] {
+  border-right: var(--board-box-border);
+}
+
+.board__winner-slide {
   background-color: transparent;
   position: absolute;
   width: 156px;
@@ -23,6 +104,15 @@
   display: none;
 }
 
-.winnerSlide.active {
+.board__winner-slide.active {
   display: block !important;
+}
+
+.score {
+  background-color: var(--secondary-color);
+  position: fixed;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  min-height: 100px;
 }
