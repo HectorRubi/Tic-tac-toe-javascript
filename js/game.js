@@ -15,7 +15,9 @@ class Game {
   }
 
   init() {
+    this.player1.setTurn(true);
     this.board.setOnBoxClickedFn(this.changeTurn.bind(this));
+    console.log(this);
   }
 
   start() {
@@ -23,11 +25,22 @@ class Game {
   }
 
   stop() {
-    const winnerSlide = document.getElementById('winnerSlide');
-    winnerSlide.classList.add('active');
+    this.board.finish();
+    // const winnerSlide = document.getElementById('winnerSlide');
+    // winnerSlide.classList.add('active');
   }
 
-  changeTurn(number) {
+  reset() {
+    this.board.clear();
+    this.player1.reset();
+    this.player1.setTurn(true);
+    this.player2.reset();
+    this.turn = true;
+    this.turnCounter = 0;
+    this.winner = undefined;
+  }
+
+  changeTurn() {
     this.turnCounter += 1;
     this.player1.setTurn(!this.player1.getTurn());
     this.player2.setTurn(!this.player2.getTurn());

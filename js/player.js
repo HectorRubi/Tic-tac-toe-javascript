@@ -1,6 +1,6 @@
 class Player {
-  constructor(turn, letter) {
-    this.turn = turn;
+  constructor(letter) {
+    this.turn = false;
     this.letter = letter;
     this.isWinner = false;
   }
@@ -11,5 +11,10 @@ class Player {
 
   getTurn() {
     return this.turn;
+  }
+
+  reset() {
+    this.isWinner = false;
+    this.turn = false;
   }
 }

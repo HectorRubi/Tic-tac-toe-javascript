@@ -9,8 +9,21 @@ class Board {
 
   init() {
     for (let i = 0; i < 9; i++) {
-      this.boxList.push(new Box(i + 1, '', this.boxListRef[i], this.onBoxClicked.bind(this)));
+      this.boxList.push(new Box(i + 1, this.boxListRef[i], this.onBoxClicked.bind(this)));
     }
+  }
+
+  finish() {
+    this.boxList.forEach(box => {
+      box.finish();
+    });
+  }
+
+  clear() {
+    this.boxList.forEach(box => {
+      box.clear();
+    });
+    this.currentContent = 'O';
   }
 
   setCurrentContent(currentContent) {
@@ -36,6 +49,6 @@ class Board {
   onBoxClicked(number) {
     const box = this.getBoxFromList(number - 1);
     box.setContent(this.currentContent);
-    this.onBoxClickedFn(number);
+    this.onBoxClickedFn();
   }
 }
