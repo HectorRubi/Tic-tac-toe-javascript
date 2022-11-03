@@ -109,10 +109,31 @@ body {
 }
 
 .score {
-  background-color: var(--secondary-color);
   position: fixed;
   bottom: 0;
-  display: block;
-  width: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
   min-height: 100px;
+  padding: 20px 40px;
+  background-color: var(--secondary-color);
+}
+
+.score__player {
+  max-width: 100px;
+  text-align: center;
+}
+
+.score__player--letter {
+  margin: 0 auto;
+}
+
+.score__player--letter > object {
+  height: 24px;
+  width: 24px;
+}
+
+.score__player--name {
+  font-size: 12px;
 }

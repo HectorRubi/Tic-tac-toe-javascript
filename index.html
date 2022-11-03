@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <main>
+  <main class="container">
     <header class="header">
       <p class="header__reset--container">
         <a href="#" id="resetBtn" class="header__reset--button">Reset</a>
@@ -34,9 +34,24 @@
       </div>
     </section>
 
-    <section class="score">
+    <section>
       <p>Turno de: <span id="turnText"></span></p>
       <p id="winnerText"></p>
+    </section>
+
+    <section class="score">
+      <div class="score__player">
+        <p class="score__player--letter">
+          <object data="./assets/icons/circle.svg" type="image/svg+xml"></object>
+        </p>
+        <h3 class="score__player--name">Jugador 1</h3>
+      </div>
+      <div class="score__player">
+        <p class="score__player--letter">
+          <object data="./assets/icons/cross.svg" type="image/svg+xml"></object>
+        </p>
+        <h3 class="score__player--name">Jugador 2</h3>
+      </div>
     </section>
   
   </main>
