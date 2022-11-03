@@ -17,7 +17,6 @@ class Game {
   init() {
     this.player1.setTurn(true);
     this.board.setOnBoxClickedFn(this.changeTurn.bind(this));
-    console.log(this);
   }
 
   start() {
@@ -38,6 +37,7 @@ class Game {
     this.turn = true;
     this.turnCounter = 0;
     this.winner = undefined;
+    this.printPlayer();
   }
 
   changeTurn() {
@@ -100,5 +100,16 @@ class Game {
   printPlayer() {
     const turnText = document.getElementById("turnText");
     turnText.innerHTML = this.turn ? "Player 1" : "Player 2";
+    
+    const scoreTurn = document.querySelector('.score__turn');
+    const scorePlayer = document.querySelector('.score__player');
+    scoreTurn.style.width = `${scorePlayer.offsetWidth}px`;
+    if (this.turn) {
+      scoreTurn.classList.add('score__turn--player1');
+      scoreTurn.classList.remove('score__turn--player2');
+    } else {
+      scoreTurn.classList.add('score__turn--player2');
+      scoreTurn.classList.remove('score__turn--player1');
+    }
   }
 }

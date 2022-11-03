@@ -2,6 +2,7 @@
   --primary-color: #3e7d91;
   --secondary-color: #2C6171;
   --tertiary-color: #F6DD7C;
+  --quaternary-color: #E88C30;
   --text-color: #9FA0A3;
   --primary-font: 'Roboto', sans-serif;
   --board-box-border: 3px solid var(--secondary-color);
@@ -113,11 +114,18 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  min-height: 100px;
+  background-color: var(--secondary-color);
+}
+
+.score__container {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  min-height: 100px;
-  padding: 20px 40px;
-  background-color: var(--secondary-color);
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 20px 0;
+  min-height: 100%;
 }
 
 .score__player {
@@ -136,4 +144,22 @@ body {
 
 .score__player--name {
   font-size: 12px;
+}
+
+.score__turn {
+  position: absolute;
+  height: 5px;
+  bottom: 0;
+  transition: all 1s ease;
+}
+
+.score__turn--player1 {
+  background-color: var(--tertiary-color);
+  left: 0;
+}
+
+.score__turn--player2 {
+  background-color: var(--quaternary-color);
+  left: 100%;
+  transform: translateX(-100%);
 }
