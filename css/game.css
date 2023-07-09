@@ -76,6 +76,10 @@
   border-right: var(--board-box-border);
 }
 
+.board__box > object {
+  width: 50%;
+}
+
 .board__winner-slide {
   background-color: transparent;
   position: absolute;
