@@ -32,11 +32,12 @@ class Box {
     this.__element.removeEventListener('click', this.__onClickHandler, true);
   }
 
-  clear() {
+  reset() {
     this.__element.innerHTML = '';
     this.__content = null;
+    this.__addListener();
   }
-
+  
   __addListener() {
     this.__element.addEventListener('click', this.__onClickHandler, true);
   }

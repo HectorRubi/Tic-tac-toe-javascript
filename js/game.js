@@ -7,7 +7,7 @@ class Game {
     // True = Player 1
     // False = Player 2
     this.__turn = true;
-    this.winner = null;
+    this.__winner = null;
   }
 
   chooseInitialPlayer(initalPlayerValue) {
@@ -30,6 +30,13 @@ class Game {
 
   play() {
     this.board.waitingForClick(this.__playerMarkInBoard.bind(this));
+  }
+
+  reset() {
+    this.board.reset();
+    this.player1.reset();
+    this.player2.reset();
+    this.__winner = null;
   }
 
   __playerMarkInBoard(index) {
@@ -67,7 +74,6 @@ class Game {
 
   __validateWinner() {
     const boardContent = this.board.getBoardContent();
-    console.log(boardContent);
 
     let movesO = '';
     let movesX = '';
@@ -86,13 +92,13 @@ class Game {
 
     if (this.player1.isWinner) {
       console.log('Player 1 is winner');
-      this.winner = this.player1;
+      this.__winner = this.player1;
     } else if (this.player2.isWinner) {
       console.log('Player 2 is winner');
-      this.winner = this.player2;
+      this.__winner = this.player2;
     }
 
-    if (this.winner) {
+    if (this.__winner) {
       this.__gameOver();
     }
   }

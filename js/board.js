@@ -31,9 +31,9 @@ class Board {
     });
   }
 
-  clear() {
+  reset() {
     this.__boxList.forEach(box => {
-      box.clear();
+      box.reset();
     });
   }
 
