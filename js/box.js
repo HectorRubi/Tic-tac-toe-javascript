@@ -8,8 +8,20 @@ class Box {
   }
 
   mark(content) {
-    this.__element.innerHTML = content;
     this.__content = content;
+
+    let data = '';
+    if (content === 'X') {
+      data = './assets/icons/cross.svg';
+    } else {
+      data = './assets/icons/circle_light.svg';
+    }
+
+    const object = document.createElement('object');
+    object.type = 'image/svg+xml';
+    object.data = data;
+
+    this.__element.appendChild(object);
   }
 
   getContent() {

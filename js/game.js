@@ -17,6 +17,8 @@ class Game {
   }
 
   chooseInitialPlayer(initalPlayerValue) {
+    const circle = '<object data="./assets/icons/circle_light.svg" type="image/svg+xml"></object>';
+    const cross = '<object data="./assets/icons/cross.svg" type="image/svg+xml"></object>';
     if (initalPlayerValue === '0') {
       this.player1.letter = 'O';
       this.player2.letter = 'X';
