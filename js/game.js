@@ -17,17 +17,21 @@ class Game {
   }
 
   chooseInitialPlayer(initalPlayerValue) {
-    const circle = '<object data="./assets/icons/circle_light.svg" type="image/svg+xml"></object>';
-    const cross = '<object data="./assets/icons/cross.svg" type="image/svg+xml"></object>';
+    let turn = '';
     if (initalPlayerValue === '0') {
       this.player1.letter = 'O';
       this.player2.letter = 'X';
+      turn = 'score__turn--player1';
     }
 
     if (initalPlayerValue === '1') {
       this.player1.letter = 'X';
       this.player2.letter = 'O';
+      turn = 'score__turn--player2';
     }
+
+    const scoreTurn = document.querySelector('.score__turn');
+    scoreTurn.classList.add(turn);
   }
 
   play() {
@@ -53,6 +57,18 @@ class Game {
   __changeTurn() {
     this.__turn = !this.__turn;
     this.__moveScorePlayerLine();
+  }
+
+  __moveScorePlayerLine() {
+    const scoreTurn = document.querySelector('.score__turn');
+
+    if (scoreTurn.classList.contains('score__turn--player1')) {
+      scoreTurn.classList.remove('score__turn--player1');
+      scoreTurn.classList.add('score__turn--player2');
+    } else {
+      scoreTurn.classList.remove('score__turn--player2');
+      scoreTurn.classList.add('score__turn--player1');
+    }
   }
 
   __validateWinner() {
@@ -102,17 +118,5 @@ class Game {
       }
     });
     return isWinner;
-  }
-
-  __moveScorePlayerLine() {
-    const scoreTurnLine = document.querySelector('.score__turn');
-
-    if (this.__turn) {
-      scoreTurnLine.classList.add('score__turn--player1');
-      scoreTurnLine.classList.remove('score__turn--player2');
-    } else {
-      scoreTurnLine.classList.add('score__turn--player2');
-      scoreTurnLine.classList.remove('score__turn--player1');
-    }
   }
 }
