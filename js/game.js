@@ -8,12 +8,6 @@ class Game {
     // False = Player 2
     this.__turn = true;
     this.winner = null;
-
-    this.winCombinations = [
-      '012','345', '678',   // Horizontal
-      '036', '147', '258',  // Vertical
-      '048', '246'          // Diagonal
-    ];
   }
 
   chooseInitialPlayer(initalPlayerValue) {
@@ -105,7 +99,12 @@ class Game {
 
   __checkCombinations(moves) {
     let isWinner = false;
-    this.winCombinations.forEach(combination => {
+    const winCombinations = [
+      '012','345', '678',   // Horizontal
+      '036', '147', '258',  // Vertical
+      '048', '246'          // Diagonal
+    ];
+    winCombinations.forEach(combination => {
       const combArr = combination.split('');
       if (moves.match(`(?=.*${combArr[0]})(?=.*${combArr[1]})(?=.*${combArr[2]})`)) {
         isWinner = true;
