@@ -132,6 +132,7 @@
 .score__turn {
   position: absolute;
   height: 5px;
+  width: 55px;
   bottom: 0;
   transition: all 1s ease;
 }

@@ -14,7 +14,6 @@ class Game {
       '036', '147', '258',  // Vertical
       '048', '246'          // Diagonal
     ];
-    this.printPlayer();
   }
 
   chooseInitialPlayer(initalPlayerValue) {
@@ -34,7 +33,12 @@ class Game {
   }
 
   __playerMarkInBoard(index) {
-    // Set the right mark in board
+    this.__markBoard(index);
+    this.__changeTurn();
+    this.__validateWinner();
+  }
+
+  __markBoard(index) {
     let content = '';
     if (this.__turn) {
       content = this.player1.letter;
@@ -42,14 +46,11 @@ class Game {
       content = this.player2.letter;
     }
     this.board.throw(content, index);
-
-    this.__changeTurn();
-    this.__validateWinner();
   }
 
   __changeTurn() {
     this.__turn = !this.__turn;
-    this.printPlayer();
+    this.__moveScorePlayerLine();
   }
 
   __validateWinner() {
@@ -84,17 +85,6 @@ class Game {
     }
   }
 
-  reset() {
-    this.board.clear();
-    this.player1.reset();
-    this.player1.setTurn(true);
-    this.player2.reset();
-    this.__turn = true;
-    this.__turnCounter = 0;
-    this.winner = undefined;
-    this.printPlayer();
-  }
-
   stop() {
     this.board.finish();
     // const winnerSlide = document.getElementById('winnerSlide');
@@ -112,19 +102,15 @@ class Game {
     return isWinner;
   }
 
-  printPlayer() {
-    const turnText = document.getElementById("turnText");
-    turnText.innerHTML = this.__turn ? "Player 1" : "Player 2";
-    
-    const scoreTurn = document.querySelector('.score__turn');
-    const scorePlayer = document.querySelector('.score__player');
-    scoreTurn.style.width = `${scorePlayer.offsetWidth}px`;
+  __moveScorePlayerLine() {
+    const scoreTurnLine = document.querySelector('.score__turn');
+
     if (this.__turn) {
-      scoreTurn.classList.add('score__turn--player1');
-      scoreTurn.classList.remove('score__turn--player2');
+      scoreTurnLine.classList.add('score__turn--player1');
+      scoreTurnLine.classList.remove('score__turn--player2');
     } else {
-      scoreTurn.classList.add('score__turn--player2');
-      scoreTurn.classList.remove('score__turn--player1');
+      scoreTurnLine.classList.add('score__turn--player2');
+      scoreTurnLine.classList.remove('score__turn--player1');
     }
   }
 }
