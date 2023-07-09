@@ -4,7 +4,7 @@ class Box {
     this.__element = reference;
     this.__onClickCallback = callback;
     this.__onClickHandler = this.__onClick.bind(this);
-    this.__element.addEventListener('click', this.__onClickHandler, true);
+    this.__addListener();
   }
 
   mark(content) {
@@ -28,18 +28,17 @@ class Box {
     return this.__content;
   }
 
-  finish() {
+  removeListener() {
     this.__element.removeEventListener('click', this.__onClickHandler, true);
   }
 
   clear() {
     this.__element.innerHTML = '';
     this.__content = null;
-    this.init();
   }
 
-  getNumber() {
-    return this.number;
+  __addListener() {
+    this.__element.addEventListener('click', this.__onClickHandler, true);
   }
 
   __isFilled() {

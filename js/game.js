@@ -7,8 +7,8 @@ class Game {
     // True = Player 1
     // False = Player 2
     this.__turn = true;
+    this.winner = null;
 
-    this.winner;
     this.winCombinations = [
       '012','345', '678',   // Horizontal
       '036', '147', '258',  // Vertical
@@ -72,7 +72,8 @@ class Game {
   }
 
   __validateWinner() {
-    const boardContent = this.board.getBoxListContent();
+    const boardContent = this.board.getBoardContent();
+    console.log(boardContent);
 
     let movesO = '';
     let movesX = '';
@@ -86,30 +87,23 @@ class Game {
       }
     });
 
-    this.player1.isWinner = this.checkCombinations(movesO);
-    this.player2.isWinner = this.checkCombinations(movesX);
+    this.player1.isWinner = this.__checkCombinations(movesO);
+    this.player2.isWinner = this.__checkCombinations(movesX);
 
-    const winnerText = document.getElementById('winnerText');
     if (this.player1.isWinner) {
-      winnerText.innerHTML = 'Player 1 is winner';
+      console.log('Player 1 is winner');
       this.winner = this.player1;
     } else if (this.player2.isWinner) {
-      winnerText.innerHTML = 'Player 2 is winner';
+      console.log('Player 2 is winner');
       this.winner = this.player2;
     }
 
     if (this.winner) {
-      this.stop();
+      this.__gameOver();
     }
   }
 
-  stop() {
-    this.board.finish();
-    // const winnerSlide = document.getElementById('winnerSlide');
-    // winnerSlide.classList.add('active');
-  }
-
-  checkCombinations(moves) {
+  __checkCombinations(moves) {
     let isWinner = false;
     this.winCombinations.forEach(combination => {
       const combArr = combination.split('');
@@ -118,5 +112,10 @@ class Game {
       }
     });
     return isWinner;
+  }
+
+  __gameOver() {
+    this.board.finish();
+    // TODO: Show animation if is a winner or if is due game
   }
 }

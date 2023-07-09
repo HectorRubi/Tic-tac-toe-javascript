@@ -14,13 +14,20 @@ class Board {
   }
 
   throw(content, index) {
-    console.log('dice', content, index);
     this.__boxList[index].mark(content);
+  }
+
+  getBoardContent() {
+    const boardContent = [];
+    this.__boxList.forEach(box => {
+      boardContent.push(box.getContent());
+    });
+    return boardContent;
   }
 
   finish() {
     this.__boxList.forEach(box => {
-      box.finish();
+      box.removeListener();
     });
   }
 
@@ -28,14 +35,6 @@ class Board {
     this.__boxList.forEach(box => {
       box.clear();
     });
-  }
-
-  getBoxListContent() {
-    const boxListContent = [];
-    this.__boxList.forEach(box => {
-      boxListContent.push(box.getContent());
-    });
-    return boxListContent;
   }
 
   __onClickedBoard(index) {
