@@ -1,25 +1,28 @@
 class Box {
-  constructor(number, ref, onClickFn = () => {}) {
-    this.number = number;
-    this.content = '';
-    this.ref = ref;
-    this.onClickFn = onClickFn;
-    this.onClickHandler = () => {};
-    this.init();
+  constructor(reference, callback) {
+    this.__content = null;
+    this.__element = reference;
+    this.__onClickCallback = callback;
+    this.__onClickHandler = this.__onClick.bind(this);
+    this.__element.addEventListener('click', this.__onClickHandler, true);
   }
 
-  init() {
-    this.onClickHandler = this.onClick.bind(this);
-    this.ref.addEventListener('click', this.onClickHandler, true);
+  mark(content) {
+    this.__element.innerHTML = content;
+    this.__content = content;
+  }
+
+  getContent() {
+    return this.__content;
   }
 
   finish() {
-    this.ref.removeEventListener('click', this.onClickHandler, true);
+    this.__element.removeEventListener('click', this.__onClickHandler, true);
   }
 
   clear() {
-    this.ref.innerHTML = '';
-    this.content = '';
+    this.__element.innerHTML = '';
+    this.__content = null;
     this.init();
   }
 
@@ -27,22 +30,13 @@ class Box {
     return this.number;
   }
 
-  getContent() {
-    return this.content;
+  __isFilled() {
+    return this.__content !== null;
   }
 
-  setContent(content) {
-    this.content = content;
-  }
-
-  isFilled() {
-    return !(this.content.length === 0);
-  }
-
-  onClick() {
-    if (!this.isFilled()) {
-      this.onClickFn(this.ref.dataset.index);
-      this.ref.innerHTML = this.content;
+  __onClick() {
+    if (!this.__isFilled()) {
+      this.__onClickCallback(this.__element.dataset.index);
     }
   }
 }

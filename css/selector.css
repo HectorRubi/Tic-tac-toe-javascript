@@ -1,0 +1,48 @@
+.selector {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selector__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.selector__button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100px 100px;
+}
+
+.selector__button--o {
+  background-image: url('../assets/icons/circle.svg');
+  margin-right: 10px;
+}
+
+.selector__button--x {
+  background-image: url('../assets/icons/cross.svg');
+  margin-left: 10px;
+}
+
+.selector__button:hover {
+  background-color: var(--primary-color);
+}
+
+.selector__text {
+  margin-top: 20px;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  text-align: center;
+  font-size: 2rem;
+}

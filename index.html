@@ -9,54 +9,65 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/selector.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
   <main class="container">
-    <header class="header">
-      <p class="header__reset--container">
-        <a href="#" id="resetBtn" class="header__reset--button">Reset</a>
-      </p>
-      <h1 class="header__title">TicTacToe</h1>
-    </header>
-  
-    <section class="board">
-      <div id="board" class="board__wrapper">
-        <div class="board__box" data-index="1"></div>
-        <div class="board__box" data-index="2"></div>
-        <div class="board__box" data-index="3"></div>
-        <div class="board__box" data-index="4"></div>
-        <div class="board__box" data-index="5"></div>
-        <div class="board__box" data-index="6"></div>
-        <div class="board__box" data-index="7"></div>
-        <div class="board__box" data-index="8"></div>
-        <div class="board__box" data-index="9"></div>
-        <div id="winnerSlide" class="board__winner-slide"></div>
+    <section class="selector">
+      <div class="selector__wrapper">
+        <button class="selector__button selector__button--o" data-value="0"></button>
+        <button class="selector__button selector__button--x" data-value="1"></button>
+        <p class="selector__text">Choose one</p>
       </div>
     </section>
 
-    <section>
-      <p>Turno de: <span id="turnText"></span></p>
-      <p id="winnerText"></p>
-    </section>
-
-    <section class="score">
-      <div class="score__container">
-        <div class="score__player">
-          <p class="score__player--letter">
-            <object data="./assets/icons/circle.svg" type="image/svg+xml"></object>
-          </p>
-          <h3 class="score__player--name">Jugador 1</h3>
+    <div class="game">
+      <header class="header">
+        <p class="header__reset--container">
+          <a href="#" id="resetBtn" class="header__reset--button">Reset</a>
+        </p>
+        <h1 class="header__title">TicTacToe</h1>
+      </header>
+    
+      <section class="board">
+        <div id="board" class="board__wrapper">
+          <div class="board__box" data-index="1"></div>
+          <div class="board__box" data-index="2"></div>
+          <div class="board__box" data-index="3"></div>
+          <div class="board__box" data-index="4"></div>
+          <div class="board__box" data-index="5"></div>
+          <div class="board__box" data-index="6"></div>
+          <div class="board__box" data-index="7"></div>
+          <div class="board__box" data-index="8"></div>
+          <div class="board__box" data-index="9"></div>
+          <div id="winnerSlide" class="board__winner-slide"></div>
         </div>
-        <div class="score__player">
-          <p class="score__player--letter">
-            <object data="./assets/icons/cross.svg" type="image/svg+xml"></object>
-          </p>
-          <h3 class="score__player--name">Jugador 2</h3>
-        </div>
-        <div class="score__turn"></div>
-      </div>
-    </section>
+      </section>
   
+      <section>
+        <p>Turno de: <span id="turnText"></span></p>
+        <p id="winnerText"></p>
+      </section>
+  
+      <section class="score">
+        <div class="score__container">
+          <div class="score__player">
+            <p class="score__player--letter">
+              <object data="./assets/icons/circle.svg" type="image/svg+xml"></object>
+            </p>
+            <h3 class="score__player--name">Jugador 1</h3>
+          </div>
+          <div class="score__player">
+            <p class="score__player--letter">
+              <object data="./assets/icons/cross.svg" type="image/svg+xml"></object>
+            </p>
+            <h3 class="score__player--name">Jugador 2</h3>
+          </div>
+          <div class="score__turn"></div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <script src="js/player.js"></script>

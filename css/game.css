@@ -1,0 +1,148 @@
+.game {
+  position: relative;
+  display: none;
+}
+
+.header {
+  text-align: center;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header__reset--container {
+  position: absolute;
+  left: 0;
+  padding: 0 20px;
+}
+
+.header__reset--button {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--reset-transition);
+  -webkit-transition: var(--reset-transition);
+  -moz-transition: var(--reset-transition);
+  -ms-transition: var(--reset-transition);
+  -o-transition: var(--reset-transition);
+}
+
+.header__reset--button:hover {
+  color: var(--secondary-color);
+}
+
+.header__title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.board {
+  margin: 0 auto;
+  width: 150px;
+}
+
+.board__wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+}
+
+.board__box {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: var(--tertiary-color);
+}
+
+.board__box[data-index='1'],
+.board__box[data-index='2'],
+.board__box[data-index='4'],
+.board__box[data-index='5'] {
+  border-right: var(--board-box-border);
+  border-bottom: var(--board-box-border);
+}
+
+.board__box[data-index='3'],
+.board__box[data-index='6'] {
+  border-bottom: var(--board-box-border);
+}
+
+.board__box[data-index='7'],
+.board__box[data-index='8'] {
+  border-right: var(--board-box-border);
+}
+
+.board__winner-slide {
+  background-color: transparent;
+  position: absolute;
+  width: 156px;
+  height: 100%;
+  display: none;
+}
+
+.board__winner-slide.active {
+  display: block !important;
+}
+
+.score {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 100px;
+  background-color: var(--secondary-color);
+}
+
+.score__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 20px 0;
+  min-height: 100%;
+}
+
+.score__player {
+  max-width: 100px;
+  text-align: center;
+}
+
+.score__player--letter {
+  margin: 0 auto;
+}
+
+.score__player--letter > object {
+  height: 24px;
+  width: 24px;
+}
+
+.score__player--name {
+  font-size: 12px;
+}
+
+.score__turn {
+  position: absolute;
+  height: 5px;
+  bottom: 0;
+  transition: all 1s ease;
+}
+
+.score__turn--player1 {
+  background-color: var(--tertiary-color);
+  left: 0;
+}
+
+.score__turn--player2 {
+  background-color: var(--quaternary-color);
+  left: 100%;
+  transform: translateX(-100%);
+}

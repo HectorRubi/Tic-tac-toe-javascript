@@ -1,60 +1,58 @@
 class Game {
-  constructor(board, player1, player2) {
-    this.board = board;
-    this.player1 = player1;
-    this.player2 = player2;
-    this.turn = true;
-    this.turnCounter = 0;
+  constructor() {
+    this.board = new Board();
+    this.player1 = new Player();
+    this.player2 = new Player();
+
+    // True = Player 1
+    // False = Player 2
+    this.__turn = true;
+
     this.winner;
     this.winCombinations = [
       '012','345', '678',   // Horizontal
       '036', '147', '258',  // Vertical
       '048', '246'          // Diagonal
     ];
-    this.init();
-  }
-
-  init() {
-    this.player1.setTurn(true);
-    this.board.setOnBoxClickedFn(this.changeTurn.bind(this));
-  }
-
-  start() {
     this.printPlayer();
   }
 
-  stop() {
-    this.board.finish();
-    // const winnerSlide = document.getElementById('winnerSlide');
-    // winnerSlide.classList.add('active');
-  }
+  chooseInitialPlayer(initalPlayerValue) {
+    if (initalPlayerValue === '0') {
+      this.player1.letter = 'O';
+      this.player2.letter = 'X';
+    }
 
-  reset() {
-    this.board.clear();
-    this.player1.reset();
-    this.player1.setTurn(true);
-    this.player2.reset();
-    this.turn = true;
-    this.turnCounter = 0;
-    this.winner = undefined;
-    this.printPlayer();
-  }
-
-  changeTurn() {
-    this.turnCounter += 1;
-    this.player1.setTurn(!this.player1.getTurn());
-    this.player2.setTurn(!this.player2.getTurn());
-
-    this.turn = !this.turn;
-    this.printPlayer();
-
-    this.board.setCurrentContent(this.turn ? "O" : "X");
-    if (this.turnCounter > 4) {
-      this.validateWinner();
+    if (initalPlayerValue === '1') {
+      this.player1.letter = 'X';
+      this.player2.letter = 'O';
     }
   }
 
-  validateWinner() {
+  play() {
+    this.board.waitingForClick(this.__playerMarkInBoard.bind(this));
+  }
+
+  __playerMarkInBoard(index) {
+    // Set the right mark in board
+    let content = '';
+    if (this.__turn) {
+      content = this.player1.letter;
+    } else {
+      content = this.player2.letter;
+    }
+    this.board.throw(content, index);
+
+    this.__changeTurn();
+    this.__validateWinner();
+  }
+
+  __changeTurn() {
+    this.__turn = !this.__turn;
+    this.printPlayer();
+  }
+
+  __validateWinner() {
     const boardContent = this.board.getBoxListContent();
 
     let movesO = '';
@@ -86,6 +84,23 @@ class Game {
     }
   }
 
+  reset() {
+    this.board.clear();
+    this.player1.reset();
+    this.player1.setTurn(true);
+    this.player2.reset();
+    this.__turn = true;
+    this.__turnCounter = 0;
+    this.winner = undefined;
+    this.printPlayer();
+  }
+
+  stop() {
+    this.board.finish();
+    // const winnerSlide = document.getElementById('winnerSlide');
+    // winnerSlide.classList.add('active');
+  }
+
   checkCombinations(moves) {
     let isWinner = false;
     this.winCombinations.forEach(combination => {
@@ -99,12 +114,12 @@ class Game {
 
   printPlayer() {
     const turnText = document.getElementById("turnText");
-    turnText.innerHTML = this.turn ? "Player 1" : "Player 2";
+    turnText.innerHTML = this.__turn ? "Player 1" : "Player 2";
     
     const scoreTurn = document.querySelector('.score__turn');
     const scorePlayer = document.querySelector('.score__player');
     scoreTurn.style.width = `${scorePlayer.offsetWidth}px`;
-    if (this.turn) {
+    if (this.__turn) {
       scoreTurn.classList.add('score__turn--player1');
       scoreTurn.classList.remove('score__turn--player2');
     } else {

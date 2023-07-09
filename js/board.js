@@ -1,54 +1,44 @@
 class Board {
   constructor() {
-    this.boxList = [];
-    this.currentContent = 'O';
-    this.boxListRef = Array.prototype.slice.call(document.getElementsByClassName('board__box'));
-    this.onBoxClickedFn;
-    this.init();
-  }
-
-  init() {
+    this.__boxList = [];
+    this.__onClickedBoardCallback = () => {};
+    
+    const boxListRef = Array.prototype.slice.call(document.querySelectorAll('.board__box'));
     for (let i = 0; i < 9; i++) {
-      this.boxList.push(new Box(i + 1, this.boxListRef[i], this.onBoxClicked.bind(this)));
+      this.__boxList.push(new Box(boxListRef[i], this.__onClickedBoard.bind(this)));
     }
   }
 
+  waitingForClick(callback) {
+    this.__onClickedBoardCallback = callback;
+  }
+
+  throw(content, index) {
+    console.log('dice', content, index);
+    this.__boxList[index].mark(content);
+  }
+
   finish() {
-    this.boxList.forEach(box => {
+    this.__boxList.forEach(box => {
       box.finish();
     });
   }
 
   clear() {
-    this.boxList.forEach(box => {
+    this.__boxList.forEach(box => {
       box.clear();
     });
-    this.currentContent = 'O';
-  }
-
-  setCurrentContent(currentContent) {
-    this.currentContent = currentContent;
-  }
-
-  setOnBoxClickedFn(onBoxClickedFn) {
-    this.onBoxClickedFn = onBoxClickedFn;
-  }
-
-  getBoxFromList(index) {
-    return this.boxList[index];
   }
 
   getBoxListContent() {
     const boxListContent = [];
-    this.boxList.forEach(box => {
-      boxListContent.push(box.content);
+    this.__boxList.forEach(box => {
+      boxListContent.push(box.getContent());
     });
     return boxListContent;
   }
 
-  onBoxClicked(number) {
-    const box = this.getBoxFromList(number - 1);
-    box.setContent(this.currentContent);
-    this.onBoxClickedFn();
+  __onClickedBoard(index) {
+    this.__onClickedBoardCallback(index - 1);
   }
 }

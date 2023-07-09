@@ -1,20 +1,10 @@
 class Player {
-  constructor(letter) {
-    this.turn = false;
-    this.letter = letter;
+  constructor() {
     this.isWinner = false;
-  }
-
-  setTurn(turn) {
-    this.turn = turn;
-  }
-
-  getTurn() {
-    return this.turn;
+    this.letter = '';
   }
 
   reset() {
     this.isWinner = false;
-    this.turn = false;
   }
 }
