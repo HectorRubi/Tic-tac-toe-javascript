@@ -15,7 +15,7 @@ This project was designed creating 4 main entities:
 
 ## Class Diagram
 
-![class Diagram](https://lh3.google.com/u/0/d/1dEGnjtL-e4tggHI27cNciRN9w7Mh48QA=w2560-h1308-iv1)
+![class Diagram](https://github.com/HectorRubi/tic-tac-toe-javascript/assets/68661875/71548f19-5825-4d4c-a55f-88ebc83dc0fb)
 
 ## Usage
 
